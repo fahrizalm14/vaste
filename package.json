@@ -1,0 +1,24 @@
+{
+  "name": "vaste",
+  "version": "1.0.0",
+  "description": "The World's Easiest and Safest Text Copier.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erzetid/vaste.git"
+  },
+  "keywords": [
+    "text-copier",
+    "copy-text",
+    "vaste"
+  ],
+  "author": "Muhammad Andri Fahrizal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erzetid/vaste/issues"
+  },
+  "homepage": "https://github.com/erzetid/vaste#readme"
+}
