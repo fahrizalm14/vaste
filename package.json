@@ -2,9 +2,11 @@
   "name": "vaste",
   "version": "1.0.0",
   "description": "The World's Easiest and Safest Text Copier.",
+  "type": "module",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon app.js",
+    "test": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -20,5 +22,18 @@
   "bugs": {
     "url": "https://github.com/erzetid/vaste/issues"
   },
-  "homepage": "https://github.com/erzetid/vaste#readme"
+  "homepage": "https://github.com/erzetid/vaste#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.13.0",
+    "nanoid": "^3.1.30",
+    "qrcode": "^1.4.4"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.16.0",
+    "jest": "^27.3.1",
+    "supertest": "^6.1.6"
+  }
 }
