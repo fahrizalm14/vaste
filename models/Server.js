@@ -14,8 +14,8 @@ class Server {
       textContent: "/api/text",
     };
     this.view = {
-      static: path.join(path.resolve(), "./client"),
-      public: path.join(path.resolve(), "./client/index.html"),
+      static: path.join(path.resolve(), "./client/public"),
+      public: path.join(path.resolve(), "./client/public/index.html"),
     };
 
     this.middlewares();

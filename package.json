@@ -5,8 +5,12 @@
   "type": "module",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon app.js",
-    "test": "jest --watch"
+    "start": "node app",
+    "server": "nodemon",
+    "client": "npm start --prefix client",
+    "test": "jest --watch",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "build": "npm run build --prefix client"
   },
   "repository": {
     "type": "git",
@@ -24,6 +28,7 @@
   },
   "homepage": "https://github.com/erzetid/vaste#readme",
   "dependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.16.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
@@ -32,7 +37,6 @@
     "qrcode": "^1.4.4"
   },
   "devDependencies": {
-    "@babel/plugin-transform-modules-commonjs": "^7.16.0",
     "jest": "^27.3.1",
     "supertest": "^6.1.6"
   }
