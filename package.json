@@ -4,11 +4,17 @@
   "description": "The World's Easiest and Safest Text Copier.",
   "type": "module",
   "main": "app.js",
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/packages/",
+      "<rootDir>/client/"
+    ]
+  },
   "scripts": {
     "start": "node app",
     "server": "nodemon",
     "client": "npm start --prefix client",
-    "test": "jest --watch",
+    "test": "concurrently \"jest --watch --verbose\" \"npm run test --prefix client\"",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "build": "npm run build --prefix client"
   },

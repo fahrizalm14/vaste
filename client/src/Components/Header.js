@@ -14,14 +14,14 @@ const NavBrand = styled.div`
 const BrandLink = styled.a`
   color: #f7d51d;
   font-size: 1rem;
-  @media ${device.mobileL} {
+  @media ${device.tablet} {
     font-size: 1.4rem;
   }
 `;
 const BrandDes = styled.div`
   color: #f7d51d;
   font-size: 0.5rem;
-  @media ${device.mobileL} {
+  @media ${device.tablet} {
     font-size: 0.8rem;
   }
 `;

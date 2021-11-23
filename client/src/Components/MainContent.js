@@ -21,7 +21,7 @@ const TextContent = styled.div`
   border-color: #e97a63;
 `;
 
-const NesTitle = styled.p``;
+const NesTitle = styled.label``;
 
 const TextArea = styled.textarea`
   min-height: 16rem;
@@ -54,11 +54,18 @@ const MainContent = () => {
         <Col xs={12} md={4}>
           <ScanMe className="nes-container with-title is-centered is-error">
             <NesTitle className="nes-text title is-warning">Scan Me</NesTitle>
-            <QRCode src={qrShowImg}></QRCode>
-            <TokenLabel className="nes-text is-warning">Token</TokenLabel>
+            <QRCode
+              src={qrShowImg}
+              alt="QRCode"
+              height={512}
+              width={512}
+            ></QRCode>
+            <TokenLabel className="nes-text is-warning" htmlFor="token">
+              Token
+            </TokenLabel>
             <Token
               type="text"
-              id="name_field"
+              id="token"
               defaultValue="bcvsyshsh"
               className="nes-input is-warning"
               readOnly
@@ -67,8 +74,13 @@ const MainContent = () => {
         </Col>
         <Col xs={12} md={8}>
           <TextContent className="nes-container with-title is-centered is-error">
-            <NesTitle className="nes-text title is-error">Copy/Paste</NesTitle>
-            <TextArea className="nes-textarea is-error"></TextArea>
+            <NesTitle className="nes-text title is-error" htmlFor="textContent">
+              Copy/Paste
+            </NesTitle>
+            <TextArea
+              id="textContent"
+              className="nes-textarea is-error"
+            ></TextArea>
             <Row center="xs">
               <Button type="button" className="nes-btn is-warning">
                 Send

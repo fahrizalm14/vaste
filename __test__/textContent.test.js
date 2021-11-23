@@ -20,6 +20,11 @@ describe("POST text ", () => {
     expect(res.type).toEqual(expect.stringContaining("json"));
   });
 
+  it("POST /api/text body data should object", async () => {
+    const res = await requestWithSupertest.post("/api/text").send(payload);
+    expect(typeof res.body).toBe("object");
+  });
+
   it("POST /api/text should have property (status, message, token, textContent)", async () => {
     const res = await requestWithSupertest.post("/api/text").send(payload);
     expect(res.body).toHaveProperty("status");
@@ -32,6 +37,11 @@ describe("POST text ", () => {
     const res = await requestWithSupertest.post("/api/text").send(badPayload);
     expect(res.status).toBe(400);
     expect(res.type).toEqual(expect.stringContaining("json"));
+  });
+
+  it("POST /api/text badPayload reponse body should object", async () => {
+    const res = await requestWithSupertest.post("/api/text").send(badPayload);
+    expect(typeof res.body).toBe("object");
   });
 
   it("POST /api/text badPayload should have property (status, message, token, textContent)", async () => {

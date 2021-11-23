@@ -24,10 +24,14 @@ const FooterLink = styled.a`
 const Footer = () => {
   return (
     <FooterText className="nes-text is-error" center="xs">
-      <FooterLink className="nes-text is-error" href="#">
+      <FooterLink className="nes-text is-error" href="/">
         VASTE.ID
       </FooterLink>
-      <PlayButton className="play-btn" src={playButtonImg} />
+      <PlayButton
+        className="play-btn"
+        src={playButtonImg}
+        alt="GooglePlayButton"
+      />
       <FooterLink
         className="nes-text"
         onclick="document.getElementById('dialog-privasi').showModal();"

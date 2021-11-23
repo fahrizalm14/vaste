@@ -16,10 +16,10 @@ class Server {
       textContent: "/api/text",
     };
     this.view = {
-      static: path.join(path.resolve(), "index.html"),
-      public: path.join(path.resolve(), "index.html"),
-      // static: path.join(path.resolve(), "./client/public"),
-      // public: path.join(path.resolve(), "./client/public/index.html"),
+      // static: path.join(path.resolve(), "index.html"),
+      // public: path.join(path.resolve(), "index.html"),
+      static: path.join(path.resolve(), "./client/build"),
+      public: path.join(path.resolve(), "./client/build/index.html"),
     };
 
     this.middlewares();
