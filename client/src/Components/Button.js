@@ -1,5 +1,7 @@
 import styled, { css } from "styled-components";
 import { device } from "../Utils/device";
+import { TutorialModal } from "./Modal";
+import useModal from "../Utils/useModal";
 
 const ButtonFixed = styled.a`
   @media ${device.tablet} {
@@ -26,15 +28,16 @@ const ButtonFixed = styled.a`
 `;
 
 const ButtonTutorial = () => {
+  const { isShowing, toggle } = useModal();
   return (
-    <ButtonFixed
-      onclick="document.getElementById('dialog-tutorial').showModal();"
-      animated
-    >
-      <i className="nes-logo is-large" />
-      <span className="nes-text is-error">Tutorial</span>
-    </ButtonFixed>
+    <>
+      <ButtonFixed onClick={toggle} animated>
+        <i className="nes-logo is-large" />
+        <span className="nes-text is-error">Tutorial</span>
+      </ButtonFixed>
+      <TutorialModal isShowing={isShowing} hide={toggle}></TutorialModal>
+    </>
   );
 };
 
-export default ButtonTutorial;
+export { ButtonTutorial };

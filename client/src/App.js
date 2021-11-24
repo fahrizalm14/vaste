@@ -1,7 +1,7 @@
 import Header from "./Components/Header";
 import MainContent from "./Components/MainContent";
 import Footer from "./Components/Footer";
-import ButtonTutorial from "./Components/ButtonTutorial";
+import { ButtonTutorial } from "./Components/Button";
 import Favicon from "react-favicon";
 import favicon from "./Images/favicon.ico";
 

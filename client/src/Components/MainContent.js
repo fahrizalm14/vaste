@@ -1,7 +1,9 @@
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Row, Col } from "react-flexbox-grid";
 import { device } from "../Utils/device";
 import qrShowImg from "../Images/saweria.png";
+import { getToken } from "../Api";
 
 const Content = styled.div`
   padding-top: 2rem;
@@ -47,7 +49,27 @@ const Button = styled.button`
   margin-right: 1rem;
 `;
 
+const BaloonCopied = styled.div`
+  display: none;
+  position: absolute;
+  font-size: 12px;
+  bottom: 0;
+  left: 25px;
+  z-index: 9;
+`;
+
 const MainContent = () => {
+  const [token, setToken] = useState("");
+  const getTokenString = async () => {
+    const tokenObject = await getToken();
+    setToken(tokenObject);
+  };
+  useEffect(() => {
+    getTokenString();
+  }, []);
+  const [visibility, setVisibilty] = useState("none");
+  if (visibility === "block") setTimeout(() => setVisibilty("none"), 3000);
+
   return (
     <Content>
       <Row>
@@ -66,7 +88,7 @@ const MainContent = () => {
             <Token
               type="text"
               id="token"
-              defaultValue="bcvsyshsh"
+              defaultValue={token.token}
               className="nes-input is-warning"
               readOnly
             />
@@ -81,12 +103,23 @@ const MainContent = () => {
               id="textContent"
               className="nes-textarea is-error"
             ></TextArea>
+
             <Row center="xs">
               <Button type="button" className="nes-btn is-warning">
                 Send
               </Button>
-              <Button type="button" className="nes-btn is-error">
+              <Button
+                type="button"
+                className="nes-btn is-error"
+                onClick={() => setVisibilty("block")}
+              >
                 Copy
+                <BaloonCopied
+                  style={{ display: visibility }}
+                  className="nes-balloon from-left is-dark"
+                >
+                  copied
+                </BaloonCopied>
               </Button>
             </Row>
           </TextContent>

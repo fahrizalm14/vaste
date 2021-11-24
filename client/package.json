@@ -10,9 +10,11 @@
     "babel-jest": "26.6.0",
     "nes.css": "^2.3.0",
     "react": "^17.0.2",
+    "react-dialog-polyfill": "^1.0.5",
     "react-dom": "^17.0.2",
     "react-favicon": "0.0.25",
     "react-scripts": "4.0.3",
+    "react-typed": "^1.2.0",
     "styled-components": "^5.3.3",
     "web-vitals": "^1.0.1"
   },

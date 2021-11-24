@@ -43,13 +43,15 @@ const Header = () => {
   return (
     <AppBar>
       <NavBrand>
-        <BrandLink href="https://reactjs.org">VASTE.ID</BrandLink>
+        <BrandLink href="/">VASTE.ID</BrandLink>
         <BrandDes>Multi Device Text Copyer</BrandDes>
       </NavBrand>
-      <SocialButton>
-        <GithubLink href="https://reactjs.org" className="nes-text is-error">
-          Github
-        </GithubLink>
+      <SocialButton
+        href="https://reactjs.org"
+        target={"_blank"}
+        rel="noopener noreferrer"
+      >
+        <GithubLink className="nes-text is-error">Github</GithubLink>
         <Icon className="nes-icon github"></Icon>
       </SocialButton>
     </AppBar>

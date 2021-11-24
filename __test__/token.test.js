@@ -10,19 +10,20 @@ describe("GET Token Endpoints", () => {
     expect(res.type).toEqual(expect.stringContaining("json"));
     expect(res.status).toBe(200);
   });
-
   it("GET /api/token should have property (status, message, token)", async () => {
     const res = await requestWithSupertest.get("/api/token");
     expect(res.body).toHaveProperty("status");
     expect(res.body).toHaveProperty("message");
     expect(res.body).toHaveProperty("token");
   });
-
   it("GET /api/token status should return success", async () => {
     const res = await requestWithSupertest.get("/api/token");
     expect(res.body.status).toEqual("success");
   });
-
+  it("GET /api/token typ token should string", async () => {
+    const res = await requestWithSupertest.get("/api/token");
+    expect(typeof res.body.token).toEqual("string");
+  });
   it("GET /api/token message should return connected", async () => {
     const res = await requestWithSupertest.get("/api/token");
     expect(res.body.message).toEqual("connected");

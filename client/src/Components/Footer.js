@@ -2,6 +2,9 @@ import styled from "styled-components";
 import playButtonImg from "../Images/play-button.png";
 import { Row } from "react-flexbox-grid";
 import { device } from "../Utils/device";
+import useModal from "../Utils/useModal";
+import { PrivacyModal } from "./Modal";
+
 const FooterText = styled(Row)`
   margin-top: 2rem;
 `;
@@ -22,6 +25,7 @@ const FooterLink = styled.a`
 `;
 
 const Footer = () => {
+  const { isShowing, toggle } = useModal();
   return (
     <FooterText className="nes-text is-error" center="xs">
       <FooterLink className="nes-text is-error" href="/">
@@ -32,12 +36,10 @@ const Footer = () => {
         src={playButtonImg}
         alt="GooglePlayButton"
       />
-      <FooterLink
-        className="nes-text"
-        onclick="document.getElementById('dialog-privasi').showModal();"
-      >
+      <FooterLink className="nes-text" onClick={toggle}>
         Privacy
       </FooterLink>
+      <PrivacyModal isShowing={isShowing} hide={toggle}></PrivacyModal>
     </FooterText>
   );
 };
