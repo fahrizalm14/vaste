@@ -4,7 +4,7 @@ import Server from "../models/Server.js";
 const server = new Server();
 const requestWithSupertest = supertest(server.app);
 
-describe("POST text ", () => {
+describe("ENDPOINT api/text ", () => {
   const payload = {
     token: "dHJmd78hdj",
     textContent:
