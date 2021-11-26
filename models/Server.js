@@ -8,6 +8,9 @@ import { Server as IoServer } from "socket.io";
 class Server {
   constructor() {
     this.app = express();
+
+    this.httpServer = createServer(this.app);
+    this.io = new IoServer(this.httpServer, { cors: "*" });
     // eslint-disable-next-line no-undef
     this.port = process.env.PORT;
     this.paths = {
@@ -16,8 +19,6 @@ class Server {
       textContent: "/api/text",
     };
     this.view = {
-      // static: path.join(path.resolve(), "index.html"),
-      // public: path.join(path.resolve(), "index.html"),
       static: path.join(path.resolve(), "./client/build"),
       public: path.join(path.resolve(), "./client/build/index.html"),
     };
@@ -29,6 +30,10 @@ class Server {
   middlewares() {
     this.app.use(cors());
     this.app.use(express.json());
+    this.app.use((req, res, next) => {
+      req.io = this.io;
+      return next();
+    });
 
     this.app.use(express.static(this.view.static));
   }
@@ -49,26 +54,10 @@ class Server {
   }
 
   listen() {
-    const httpServer = createServer(this.app);
-    const io = new IoServer(httpServer, {});
-    // server-side
-    io.on("connection", (socket) => {
-      //receive message
-      socket.on("fromClient", (arg) => {
-        console.log(arg);
-      });
-      socket.on("ping", (arg) => {
-        console.log(arg);
-        socket.emit("toClient", `This replay from server ${arg}`);
-      });
-      socket.on("disconnect", () => {
-        console.log(`Disconnect ${socket.id}`); // undefined
-      });
-      //send message
-      socket.emit("toClient", "This from server");
+    this.io.on("connection", (socket) => {
+      socket.emit("toClient", { token: "This token", message: "This message" });
     });
-
-    httpServer.listen(this.port, () => {
+    this.httpServer.listen(this.port, () => {
       console.log(`Server running on http://localhost:${this.port}`);
     });
   }

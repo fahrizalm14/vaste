@@ -1,4 +1,4 @@
-export async function getToken() {
+async function getToken() {
   return await fetch(`/api/token`, {
     method: "GET",
     headers: { "Content-Type": "application/json" },
@@ -15,3 +15,7 @@ export async function getToken() {
       console.log(err);
     });
 }
+
+// async function
+
+export { getToken };

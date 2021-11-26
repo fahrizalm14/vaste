@@ -3,7 +3,7 @@ import { response } from "express";
 const postController = async (req, res = response) => {
   try {
     const { token, textContent } = req.body;
-
+    req.io.emit(token, { textContent });
     res.status(200).json({
       status: "success",
       message: "delivered",

@@ -7,7 +7,7 @@ import { getToken } from "../Api";
 import QRCodeStyling from "qr-code-styling";
 import io from "socket.io-client";
 
-const socket = io.connect("/");
+const socket = io.connect();
 
 const qrCode = new QRCodeStyling({
   width: 200,
@@ -35,6 +35,7 @@ const qrCode = new QRCodeStyling({
 const MainContent = () => {
   const [token, setToken] = useState("");
   const [url, setUrl] = useState("https://vaste.site");
+  const [textContent, setTexContent] = useState("");
   const ref = useRef(null);
 
   const getTokenString = async () => {
@@ -43,8 +44,13 @@ const MainContent = () => {
     setUrl(token);
   };
 
-  const stringTextContent = "Saya ini sedang baik-baik saja.";
+  const changeText = (event)=> setTexContent (event.target.value);
 
+  // receive message
+  socket.on(token, (arg) => {
+    console.log(arg);
+    setTexContent(arg.textContent);
+  });
   useEffect(() => {
     getTokenString();
   }, []);
@@ -55,7 +61,7 @@ const MainContent = () => {
 
   useEffect(() => {
     qrCode.update({
-      data: url,
+      data: `{${url}, "https://vaste.site"}`,
     });
   }, [url]);
 
@@ -85,14 +91,18 @@ const MainContent = () => {
           </ScanMe>
         </Col>
         <Col xs={12} md={8}>
-          <TextContent className="nes-container with-title is-centered is-error">
+          <TextContent
+            className="nes-container with-title is-centered is-error"
+            readOnly
+          >
             <NesTitle className="nes-text title is-error" htmlFor="textContent">
               Copy/Paste
             </NesTitle>
             <TextArea
-              value={stringTextContent}
+              value={textContent}
               id="textContent"
               className="nes-textarea is-error"
+              onChange={changeText}
             ></TextArea>
 
             <Row center="xs">
@@ -154,8 +164,10 @@ const QRCode = styled.div`
 const TokenLabel = styled.label``;
 
 const Token = styled.input`
-  font-size: 0.8rem;
+  @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@900&display=swap');
+  font-family: 'Inconsolata', monospace;
   color: #e97a63;
+  font-size: 2rem;
   text-align: center;
 `;
 
