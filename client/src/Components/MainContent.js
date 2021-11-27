@@ -44,7 +44,7 @@ const MainContent = () => {
     setUrl(token);
   };
 
-  const changeText = (event)=> setTexContent (event.target.value);
+  const changeText = (event) => setTexContent(event.target.value);
 
   // receive message
   socket.on(token, (arg) => {
@@ -61,7 +61,7 @@ const MainContent = () => {
 
   useEffect(() => {
     qrCode.update({
-      data: `{${url}, "https://vaste.site"}`,
+      data: JSON.stringify({ token: url, copyright: "vaste.site" }),
     });
   }, [url]);
 
@@ -164,8 +164,8 @@ const QRCode = styled.div`
 const TokenLabel = styled.label``;
 
 const Token = styled.input`
-  @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@900&display=swap');
-  font-family: 'Inconsolata', monospace;
+  @import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@900&display=swap");
+  font-family: "Inconsolata", monospace;
   color: #e97a63;
   font-size: 2rem;
   text-align: center;

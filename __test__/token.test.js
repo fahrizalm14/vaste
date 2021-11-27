@@ -41,7 +41,6 @@ describe("PUT Token Endpoints", () => {
     expect(res.status).toBe(404);
   });
 });
-
 describe("DELETE Token Endpoints", () => {
   it("DELETE /api/token statusCode should return 404", async () => {
     const res = await requestWithSupertest.delete("/api/token");
