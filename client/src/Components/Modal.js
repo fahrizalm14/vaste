@@ -6,14 +6,6 @@ import qrSaweriaImg from "../Images/saweria.png";
 import useModal from "../Utils/useModal";
 import { device } from "../Utils/device";
 
-const EmailContact = styled.p`
-  padding-top: 6rem;
-  max-width: 15rem:
-  @media ${device.tablet} {
-    padding-top: 0rem;
-  }
-`;
-
 const SaweriaModal = ({ isShowing, hide }) => {
   const newLocal = isShowing
     ? createPortal(
@@ -34,6 +26,7 @@ const SaweriaModal = ({ isShowing, hide }) => {
     : null;
   return newLocal;
 };
+const QRSaweria = styled.img``;
 
 const PrivacyModal = ({ isShowing, hide }) => {
   const newLocal = isShowing
@@ -67,6 +60,21 @@ const PrivacyModal = ({ isShowing, hide }) => {
     : null;
   return newLocal;
 };
+const PrivacyContainer = styled.div`
+  width: 15rem;
+  height: 10rem;
+  @media ${device.tablet} {
+    width: 30rem;
+    height: 10rem;
+  }
+`;
+const EmailContact = styled.p`
+  padding-top: 6rem;
+  max-width: 15rem:
+  @media ${device.tablet} {
+    padding-top: 0rem;
+  }
+`;
 
 const TutorialModal = ({ isShowing: isShow, hide }) => {
   console.log(isShow);
@@ -133,19 +141,11 @@ const TutorialModal = ({ isShowing: isShow, hide }) => {
     : null;
   return newLocal;
 };
-
 const IFrame = styled.iframe``;
 const ModalContainer = styled.div``;
+
+//root
 const ModalTitle = styled.p``;
 const DonationLink = styled.button``;
-const QRSaweria = styled.img``;
-const PrivacyContainer = styled.div`
-  width: 15rem;
-  height: 10rem;
-  @media ${device.tablet} {
-    width: 30rem;
-    height: 10rem;
-  }
-`;
 
 export { SaweriaModal, TutorialModal, PrivacyModal };

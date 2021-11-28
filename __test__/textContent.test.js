@@ -39,6 +39,7 @@ describe("ENDPOINT api/text ", () => {
     const res = await requestWithSupertest.post("/api/text").send(badPayload);
     expect(typeof res.body).toBe("object");
   });
+
   it("POST /api/text badPayload should have property (status, message, token, textContent)", async () => {
     const res = await requestWithSupertest.post("/api/text").send(badPayload);
     expect(res.body).toHaveProperty("status");
