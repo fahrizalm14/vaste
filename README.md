@@ -30,10 +30,10 @@ All texts can only be seen on the client side, the server only as a data sender/
 
 **📚 Library :**
 
-- <a href="https://github.com/erzetid/vaste/issues">Socket.Io<a/>
-- <a href="https://github.com/erzetid/vaste/issues">React Js<a/>
-- <a href="https://github.com/erzetid/vaste/issues">Nanoid<a/>
-- <a href="https://github.com/erzetid/vaste/issues">QRCode Styling<a/>
+- <a href="https://reactjs.org/">React Js<a/>
+- <a href="https://socket.io">Socket.Io<a/>
+- <a href="https://github.com/ai/nanoid">Nanoid<a/>
+- <a href="hhttps://qr-code-styling.com">QRCode Styling<a/>
 
 **🌎 Browser :**
 
@@ -106,16 +106,18 @@ If the `proxy` option is **not** flexible enough for you, alternatively you can:
 
 We welcome all contributions.You can submit any ideas as pull requests or as GitHub issues. If you'd like to improve code, check out the Development Instructions and have a good time!
 
-## ❤️ Donate
+## 🎁 Donate
 
 Support this application, to become dApps (Decentralized Applications)
 
-**Bitcoin :** `15kHKSH7JaRHWGTQmza3E8aomxT2g5D373`
+<p>
 
-**Ethereum :** `0xa9ac91a2546d9403a8efb873a3cac382d6271b93`
+Bitcoin :`15kHKSH7JaRHWGTQmza3E8aomxT2g5D373`<p/>
 
-**BNB BEP20:** `0xa9ac91a2546d9403a8efb873a3cac382d6271b93`
+<p>
 
-**USDT BEP20:** `0xa9ac91a2546d9403a8efb873a3cac382d6271b93`
+Ethereum :`0xa9ac91a2546d9403a8efb873a3cac382d6271b93`<p/>
 
-**Matic ERC20:** `0xa9ac91a2546d9403a8efb873a3cac382d6271b93`
+<br>
+
+<h1 align="center"> 😀😀😀 Thank's ❤️❤️❤️ </h1>
