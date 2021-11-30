@@ -1,5 +1,6 @@
 <p align="center">
-  <a href="https://expo.dev/">
+
+  <a href="https://https://vaste.site/">
     <img alt="expo sdk" height="128" src="https://vaste.s3.ap-southeast-1.amazonaws.com/apple-icon.png ">
     <h1 align="center">Vaste</h1>
   </a>
