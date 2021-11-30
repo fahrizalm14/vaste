@@ -14,7 +14,7 @@
     "start": "node app",
     "server": "nodemon",
     "client": "npm start --prefix client",
-    "test": "concurrently \"jest --watch --verbose\" \"npm run test --prefix client\"",
+    "test": "concurrently \"jest --watchAll --verbose\" \"npm run test --prefix client\"",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "build": "npm run build --prefix client"
   },
