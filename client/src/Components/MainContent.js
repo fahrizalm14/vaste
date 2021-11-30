@@ -1,44 +1,44 @@
-import { useState, useEffect, useRef } from "react";
-import styled from "styled-components";
-import { Row, Col } from "react-flexbox-grid";
-import QRCodeStyling from "qr-code-styling";
-import io from "socket.io-client";
+import { useState, useEffect, useRef } from 'react';
+import styled from 'styled-components';
+import { Row, Col } from 'react-flexbox-grid';
+import QRCodeStyling from 'qr-code-styling';
+import io from 'socket.io-client';
 
-import { device } from "../Utils/device";
-import qrShowImg from "../Images/qrImage.png";
-import { getToken } from "../Api";
-import { SendTextModal } from "./Modal";
-import useModal from "../Utils/useModal";
+import { device } from '../Utils/device';
+import qrShowImg from '../Images/qrImage.png';
+import { getToken } from '../Api';
+import { SendTextModal } from './Modal';
+import useModal from '../Utils/useModal';
 
 const socket = io.connect();
 
 const qrCode = new QRCodeStyling({
   width: 200,
   height: 200,
-  margin: "10",
+  margin: '10',
   imageOptions: { hideBackgroundDots: true, imageSize: 0.4, margin: 0 },
-  dotsOptions: { type: "square", color: "#f7d51d" },
-  backgroundOptions: { color: "#ffffff" },
+  dotsOptions: { type: 'square', color: '#f7d51d' },
+  backgroundOptions: { color: '#ffffff' },
   image: `${qrShowImg}`,
   dotsOptionsHelper: {
-    colorType: { single: true, gradient: false },
+    colorType: { single: true, gradient: false }
   },
-  cornersSquareOptions: { type: "square", color: "#000000" },
+  cornersSquareOptions: { type: 'square', color: '#000000' },
   cornersSquareOptionsHelper: {
-    colorType: { single: true, gradient: false },
+    colorType: { single: true, gradient: false }
   },
-  cornersDotOptions: { type: "", color: "#000000" },
+  cornersDotOptions: { type: '', color: '#000000' },
   cornersDotOptionsHelper: {
-    colorType: { single: true, gradient: false },
+    colorType: { single: true, gradient: false }
   },
   backgroundOptionsHelper: {
-    colorType: { single: true, gradient: false },
-  },
+    colorType: { single: true, gradient: false }
+  }
 });
 const MainContent = () => {
-  const [token, setToken] = useState("");
-  const [url, setUrl] = useState("https://vaste.site");
-  const [textContent, setTexContent] = useState("");
+  const [token, setToken] = useState('');
+  const [url, setUrl] = useState('https://vaste.site');
+  const [textContent, setTexContent] = useState('');
   const ref = useRef(null);
   const { isShowing, toggle } = useModal();
 
@@ -52,21 +52,21 @@ const MainContent = () => {
 
   const updateClipboard = (newClip) => {
     navigator.clipboard.writeText(newClip).then(() => {
-      setVisibilty("block");
+      setVisibilty('block');
     });
   };
   const copyText = () => {
-    if (textContent === "") return alert("Masih kosong");
-    navigator.permissions.query({ name: "clipboard-write" }).then((result) => {
-      if (result.state === "granted" || result.state === "prompt") {
+    if (textContent === '') return alert('Masih kosong');
+    navigator.permissions.query({ name: 'clipboard-write' }).then((result) => {
+      if (result.state === 'granted' || result.state === 'prompt') {
         updateClipboard(textContent);
       }
     });
   };
 
   const sendText = () => {
-    if (textContent === "") {
-      alert("kosong");
+    if (textContent === '') {
+      alert('kosong');
     } else {
       toggle();
     }
@@ -77,22 +77,20 @@ const MainContent = () => {
     console.log(arg);
     setTexContent(arg.textContent);
   });
-  useEffect(() => {
-    getTokenString();
-  }, []);
 
   useEffect(() => {
+    getTokenString();
     qrCode.append(ref.current);
   }, []);
 
   useEffect(() => {
     qrCode.update({
-      data: JSON.stringify({ token: url, copyright: "vaste.site" }),
+      data: JSON.stringify({ token: url, copyright: 'vaste.site' })
     });
   }, [url]);
 
-  const [visibility, setVisibilty] = useState("none");
-  if (visibility === "block") setTimeout(() => setVisibilty("none"), 3000);
+  const [visibility, setVisibilty] = useState('none');
+  if (visibility === 'block') setTimeout(() => setVisibilty('none'), 3000);
   return (
     <Content>
       <Row>
@@ -191,8 +189,8 @@ const QRCode = styled.div`
 const TokenLabel = styled.label``;
 
 const Token = styled.input`
-  @import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@900&display=swap");
-  font-family: "Inconsolata", monospace;
+  @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@900&display=swap');
+  font-family: 'Inconsolata', monospace;
   color: #e97a63;
   font-size: 2rem;
   text-align: center;
