@@ -16,6 +16,22 @@ async function getToken() {
     });
 }
 
-// async function
+async function sendTextContent(token, textContent) {
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
 
-export { getToken };
+  const raw = JSON.stringify({
+    token,
+    textContent,
+  });
+
+  return await fetch("/api/text/", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: raw,
+  })
+    .then((response) => response.json())
+    .catch((err) => console.log(err));
+}
+
+export { getToken, sendTextContent };

@@ -1,11 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Row, Col } from "react-flexbox-grid";
+import QRCodeStyling from "qr-code-styling";
+import io from "socket.io-client";
+
 import { device } from "../Utils/device";
 import qrShowImg from "../Images/qrImage.png";
 import { getToken } from "../Api";
-import QRCodeStyling from "qr-code-styling";
-import io from "socket.io-client";
+import { SendTextModal } from "./Modal";
+import useModal from "../Utils/useModal";
 
 const socket = io.connect();
 
@@ -37,6 +40,7 @@ const MainContent = () => {
   const [url, setUrl] = useState("https://vaste.site");
   const [textContent, setTexContent] = useState("");
   const ref = useRef(null);
+  const { isShowing, toggle } = useModal();
 
   const getTokenString = async () => {
     const { token } = await getToken();
@@ -45,6 +49,28 @@ const MainContent = () => {
   };
 
   const changeText = (event) => setTexContent(event.target.value);
+
+  const updateClipboard = (newClip) => {
+    navigator.clipboard.writeText(newClip).then(() => {
+      setVisibilty("block");
+    });
+  };
+  const copyText = () => {
+    if (textContent === "") return alert("Masih kosong");
+    navigator.permissions.query({ name: "clipboard-write" }).then((result) => {
+      if (result.state === "granted" || result.state === "prompt") {
+        updateClipboard(textContent);
+      }
+    });
+  };
+
+  const sendText = () => {
+    if (textContent === "") {
+      alert("kosong");
+    } else {
+      toggle();
+    }
+  };
 
   // receive message
   socket.on(token, (arg) => {
@@ -106,14 +132,10 @@ const MainContent = () => {
             ></TextArea>
 
             <Row center="xs">
-              <Button type="button" className="nes-btn is-warning">
+              <Button className="nes-btn is-warning" onClick={sendText}>
                 Send
               </Button>
-              <Button
-                type="button"
-                className="nes-btn is-error"
-                onClick={() => setVisibilty("block")}
-              >
+              <Button className="nes-btn is-error" onClick={copyText}>
                 Copy
                 <BaloonCopied
                   style={{ display: visibility }}
@@ -125,6 +147,11 @@ const MainContent = () => {
             </Row>
           </TextContent>
         </Col>
+        <SendTextModal
+          value={textContent}
+          isShowing={isShowing}
+          hide={toggle}
+        ></SendTextModal>
       </Row>
     </Content>
   );

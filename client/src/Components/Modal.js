@@ -1,10 +1,57 @@
+import { useState } from "react";
 import { createPortal } from "react-dom";
 import { Modal } from "react-dialog-polyfill";
 import styled from "styled-components";
 import Typed from "react-typed";
+
 import qrSaweriaImg from "../Images/saweria.png";
 import useModal from "../Utils/useModal";
 import { device } from "../Utils/device";
+import { sendTextContent } from "../Api";
+
+const SendTextModal = ({ isShowing, hide, value }) => {
+  const [token, setToken] = useState("");
+  const changeToken = (event) => setToken(event.target.value);
+  const sending = async () => {
+    const result = await sendTextContent(token, value);
+    console.log(result);
+    if (result.status === "error") {
+      return alert("fail");
+    }
+    return hide();
+  };
+  const newLocal = isShowing
+    ? createPortal(
+        <>
+          <Modal open={true} className="nes-dialog is-dark is-rounded">
+            <ModalContainer className="nes-container with-title is-dark is-centered">
+              <ModalTitle className="title">Send To</ModalTitle>
+              <InputToken
+                maxLength={5}
+                value={token}
+                onChange={changeToken}
+                type="text"
+                className="nes-input is-primary"
+              />
+            </ModalContainer>
+            <br />
+            <Button onClick={hide} className="nes-btn">
+              Close
+            </Button>
+            <Button onClick={sending} className="nes-btn is-primary">
+              Send
+            </Button>
+          </Modal>
+        </>,
+        document.body
+      )
+    : null;
+  return newLocal;
+};
+const InputToken = styled.input`
+  max-width: 10rem;
+  text-align: center;
+`;
 
 const SaweriaModal = ({ isShowing, hide }) => {
   const newLocal = isShowing
@@ -16,9 +63,9 @@ const SaweriaModal = ({ isShowing, hide }) => {
               <QRSaweria src={qrSaweriaImg}></QRSaweria>
             </ModalContainer>
             <br />
-            <DonationLink onClick={hide} className="nes-btn is-error">
+            <Button onClick={hide} className="nes-btn is-error">
               Close
-            </DonationLink>
+            </Button>
           </Modal>
         </>,
         document.body
@@ -50,9 +97,9 @@ const PrivacyModal = ({ isShowing, hide }) => {
               <a href="mailto:fahrizalm14@gmail.com">Send Mail</a>
             </EmailContact>
             <br />
-            <DonationLink onClick={hide} className="nes-btn is-error">
+            <Button onClick={hide} className="nes-btn is-error">
               Close
-            </DonationLink>
+            </Button>
           </Modal>
         </>,
         document.body
@@ -114,25 +161,19 @@ const TutorialModal = ({ isShowing: isShow, hide }) => {
               typeSpeed={60}
             />
             <br />
-            <DonationLink
-              onClick={() => btnPaypal()}
-              className="nes-btn is-primary"
-            >
+            <Button onClick={() => btnPaypal()} className="nes-btn is-primary">
               PayPal
-            </DonationLink>
-            <DonationLink
-              onClick={() => btnGopay()}
-              className="nes-btn is-success"
-            >
+            </Button>
+            <Button onClick={() => btnGopay()} className="nes-btn is-success">
               Gopay
-            </DonationLink>
-            <DonationLink onClick={toggle} className="nes-btn is-error">
+            </Button>
+            <Button onClick={toggle} className="nes-btn is-error">
               Saweria
-            </DonationLink>
+            </Button>
             <br />
-            <DonationLink onClick={hide} className="nes-btn is-error">
+            <Button onClick={hide} className="nes-btn is-error">
               Close
-            </DonationLink>
+            </Button>
           </Modal>
           <SaweriaModal isShowing={isShowing} hide={toggle}></SaweriaModal>
         </>,
@@ -146,6 +187,6 @@ const ModalContainer = styled.div``;
 
 //root
 const ModalTitle = styled.p``;
-const DonationLink = styled.button``;
+const Button = styled.button``;
 
-export { SaweriaModal, TutorialModal, PrivacyModal };
+export { SaweriaModal, TutorialModal, PrivacyModal, SendTextModal };
