@@ -1,26 +1,26 @@
-import express from "express";
-import cors from "cors";
-import path from "path";
-import tokenRoutes from "../routes/token.js";
-import textRoutes from "../routes/textContent.js";
-import { createServer } from "http";
-import { Server as IoServer } from "socket.io";
+import express from 'express';
+import cors from 'cors';
+import path from 'path';
+import tokenRoutes from '../routes/token.js';
+import textRoutes from '../routes/textContent.js';
+import { createServer } from 'http';
+import { Server as IoServer } from 'socket.io';
 class Server {
   constructor() {
     this.app = express();
 
     this.httpServer = createServer(this.app);
-    this.io = new IoServer(this.httpServer, { cors: "*" });
+    this.io = new IoServer(this.httpServer, { cors: '*' });
     // eslint-disable-next-line no-undef
     this.port = process.env.PORT;
     this.paths = {
-      homepage: "/",
-      token: "/api/token",
-      textContent: "/api/text",
+      homepage: '/',
+      token: '/api/token',
+      textContent: '/api/text'
     };
     this.view = {
-      static: path.join(path.resolve(), "./client/build"),
-      public: path.join(path.resolve(), "./client/build/index.html"),
+      static: path.join(path.resolve(), './client/build'),
+      public: path.join(path.resolve(), './client/build/index.html')
     };
 
     this.middlewares();
@@ -40,9 +40,9 @@ class Server {
 
   routes() {
     this.app.use((err, req, res, next) => {
-      if (err instanceof SyntaxError && err.status === 400 && "body" in err) {
+      if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
         console.error(err);
-        return res.status(400).send({ status: "error", message: err.message }); // Bad request
+        return res.status(400).send({ status: 'error', message: err.message }); // Bad request
       }
       next();
     });
@@ -54,8 +54,9 @@ class Server {
   }
 
   listen() {
-    this.io.on("connection", (socket) => {
-      socket.emit("toClient", { token: "This token", message: "This message" });
+    this.io.on('connection', (socket) => {
+      console.log(socket.id);
+      socket.emit('toClient', { token: 'This token', message: 'This message' });
     });
     this.httpServer.listen(this.port, () => {
       console.log(`Server running on http://localhost:${this.port}`);

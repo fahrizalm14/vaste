@@ -7,6 +7,6 @@ POST http://localhost:3001/api/text HTTP/1.1
 content-type: application/json
 
 {
-    "token": "token", 
-    "textContent": "Text Content" 
+    "token": "NG0Wn", 
+    "textContent": " Apa Sajalah" 
 }

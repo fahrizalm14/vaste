@@ -18,8 +18,6 @@
 </div>
 <!-- <center/> -->
 
-#
-
 Vaste is an open-source copy/paste software multiplatform written in node.js, and run without a database.
 All texts can only be seen on the client side, the server only as a data sender/broker.
 
@@ -33,11 +31,11 @@ All texts can only be seen on the client side, the server only as a data sender/
 - <a href="https://reactjs.org/">React Js<a/>
 - <a href="https://socket.io">Socket.Io<a/>
 - <a href="https://github.com/ai/nanoid">Nanoid<a/>
-- <a href="hhttps://qr-code-styling.com">QRCode Styling<a/>
+- <a href="https://qr-code-styling.com">QRCode Styling<a/>
 
 **🌎 Browser :**
 
-- the browser generates a random token as the recipient address of the text to paste/copy.
+- the browser generates a random token as the recipient address of the plain text to paste/copy.
 - token will be displayed as qrcode and plain text.
 - (copy scenario) browser will display plain text with the help of socket.io according to connected token.
 - (paste scenario) plain text that has been written in the text area will be sent according to the address of the connected token.
@@ -54,7 +52,11 @@ $ cd ..
 $ npm run dev
 ```
 
+**Front End**
 Open your browser and visit http://127.0.0.1:3000
+
+**Back End**
+http://127.0.0.1:3001
 
 ## 🖥️ Proxying API Requests in Development
 
@@ -120,4 +122,4 @@ Ethereum :`0xa9ac91a2546d9403a8efb873a3cac382d6271b93`<p/>
 
 <br>
 
-<h1 align="center"> 😀😀😀 Thank's ❤️❤️❤️ </h1>
+<h1 align="center"> Thank's ❤️</h1>

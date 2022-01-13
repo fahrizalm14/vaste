@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { device } from "../Utils/device";
+import styled from 'styled-components';
+import { device } from '../Utils/device';
 
 const SocialButton = styled.a`
   margin-left: auto;
@@ -22,8 +22,8 @@ const Header = () => {
         <BrandDes>Multi Device Text Copyer</BrandDes>
       </NavBrand>
       <SocialButton
-        href="https://reactjs.org"
-        target={"_blank"}
+        href="https://github.com/erzetid/vaste"
+        target={'_blank'}
         rel="noopener noreferrer"
       >
         <GithubLink className="nes-text is-error">Github</GithubLink>

@@ -16,8 +16,8 @@ const qrCode = new QRCodeStyling({
   width: 200,
   height: 200,
   margin: '10',
-  imageOptions: { hideBackgroundDots: true, imageSize: 0.4, margin: 0 },
-  dotsOptions: { type: 'square', color: '#f7d51d' },
+  imageOptions: { hideBackgroundDots: true, margin: 0 },
+  // dotsOptions: { type: 'square', color: '#e97a63' },
   backgroundOptions: { color: '#ffffff' },
   image: `${qrShowImg}`,
   dotsOptionsHelper: {
@@ -85,7 +85,7 @@ const MainContent = () => {
 
   useEffect(() => {
     qrCode.update({
-      data: JSON.stringify({ token: url, copyright: 'vaste.site' })
+      data: JSON.stringify(url)
     });
   }, [url]);
 
