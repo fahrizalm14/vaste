@@ -13,10 +13,10 @@
   "scripts": {
     "start": "node app",
     "server": "nodemon",
-    "client": "npm start --prefix client",
-    "test": "concurrently \"jest --watchAll --verbose\" \"npm run test --prefix client\"",
+    "client": "npm start --prefix vaste",
+    "test": "concurrently \"jest --watchAll --verbose\" \"npm run test --prefix vaste\"",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "build": "npm run build --prefix client"
+    "build": "npm run build --prefix vaste"
   },
   "repository": {
     "type": "git",
@@ -40,11 +40,10 @@
     "express": "^4.17.1",
     "express-validator": "^6.13.0",
     "nanoid": "^3.1.30",
-    "nes-react": "^1.0.2",
-    "react-flexbox-grid": "^2.1.2",
     "socket.io": "^4.4.0"
   },
   "devDependencies": {
+    "concurrently": "^7.3.0",
     "eslint": "^8.3.0",
     "jest": "^27.3.1",
     "supertest": "^6.1.6"

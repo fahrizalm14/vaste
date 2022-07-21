@@ -19,4 +19,21 @@ const postController = async (req, res = response) => {
   }
 };
 
-export { postController };
+const deleteController = async (req, res = response) => {
+  try {
+    const { token } = req.body;
+    req.io.emit(token);
+    res.status(200).json({
+      status: "success",
+      message: "successfully disconnected",
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      status: "error",
+      message: "An error occurred trying to process your request",
+    });
+  }
+};
+
+export { postController, deleteController };
