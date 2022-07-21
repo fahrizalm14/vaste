@@ -15,8 +15,7 @@
     "server": "nodemon",
     "client": "npm start --prefix vaste",
     "test": "concurrently \"jest --watchAll --verbose\" \"npm run test --prefix vaste\"",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "build": "npm run build --prefix vaste"
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
