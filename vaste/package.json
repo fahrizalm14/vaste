@@ -21,6 +21,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build && mv build/ ../vaste-build",
+    "build:git": "react-scripts build && mv build/ ../page",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
