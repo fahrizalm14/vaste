@@ -6,12 +6,12 @@ import io from "socket.io-client";
 
 import { device } from "../Utils/device";
 import qrShowImg from "../Images/qrImage.png";
-import smileGif from "../Images/smile.gif";
+// import smileGif from "../Images/smile.gif";
 import { getToken } from "../Api";
 import { SendTextModal } from "./Modal";
 import useModal from "../Utils/useModal";
 
-const socket = io.connect();
+const socket = io("https://vaste-app.herokuapp.com").connect();
 
 const qrCode = new QRCodeStyling({
   width: 200,
@@ -76,7 +76,6 @@ const MainContent = () => {
 
   // receive message
   socket.on(token, (arg) => {
-    console.log(arg);
     setTexContent(arg.textContent);
   });
 
@@ -225,9 +224,9 @@ const ButtonReloadToken = styled.button`
   background: none;
 `;
 
-const SmileGif = styled.img`
-  width: auto;
-  height: 100%;
-`;
+// const SmileGif = styled.img`
+//   width: auto;
+//   height: 100%;
+// `;
 
 export default MainContent;

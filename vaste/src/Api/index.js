@@ -1,5 +1,5 @@
 async function getToken() {
-  return await fetch(`/api/token`, {
+  return await fetch(`https://vaste-app.herokuapp.com/api/token`, {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   })
@@ -25,7 +25,7 @@ async function sendTextContent(token, textContent) {
     textContent,
   });
 
-  return await fetch("/api/text/", {
+  return await fetch("https://vaste-app.herokuapp.com/api/text/", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: raw,
